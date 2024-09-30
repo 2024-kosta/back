@@ -19,14 +19,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public void addCorsMappings(CorsRegistry registry) {
 		registry
 			.addMapping("/**")
-			.allowedOrigins("http://localhost:3000", "http://172.30.1.30:3000", "http://192.168.233.128")
+			.allowedOrigins( "http://3.35.219.146", "http://dodream.store")
 			.allowedMethods("OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE");
 	}
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry
-			.addResourceHandler("/img/**")
+			.addResourceHandler("/api/img/**")
 			.addResourceLocations("file:"+ uploadPath + "\\");
 	}
 	

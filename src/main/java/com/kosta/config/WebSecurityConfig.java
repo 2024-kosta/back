@@ -23,6 +23,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
 import java.util.Collections;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -71,7 +72,7 @@ public class WebSecurityConfig {
                 new AntPathRequestMatcher("/api/oauth/**"),                 // oAuth 처리 (20240919)
                 new AntPathRequestMatcher("/api/auth/signup"),              // 회원가입
                 new AntPathRequestMatcher("/api/auth/duplicate"),           // 이메일 중복체크
-                new AntPathRequestMatcher("/img/**"),                       // 이미지
+                new AntPathRequestMatcher("/api/img/**"),                   // 이미지
                 new AntPathRequestMatcher("/api/auth/refresh-token"),       // 토큰 재발급
                 new AntPathRequestMatcher("/api/post/**", "GET")
             ).permitAll()
@@ -116,6 +117,7 @@ public class WebSecurityConfig {
             config.setAllowedHeaders(Collections.singletonList("*"));
             config.setAllowedMethods(Collections.singletonList("*"));
             config.setAllowedOriginPatterns(Collections.singletonList("http://192.168.233.128"));
+            config.setAllowedOrigins(List.of("http://3.35.219.146", "http://dodream.store"));
             config.setAllowCredentials(true);
             return config;
         };
