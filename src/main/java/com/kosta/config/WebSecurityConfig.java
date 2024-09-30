@@ -117,7 +117,7 @@ public class WebSecurityConfig {
             config.setAllowedHeaders(Collections.singletonList("*"));
             config.setAllowedMethods(Collections.singletonList("*"));
             config.setAllowedOriginPatterns(Collections.singletonList("http://192.168.233.128"));
-            config.setAllowedOrigins(List.of("http://3.35.219.146", "http://dodream.store"));
+            config.setAllowedOrigins(List.of("http://3.35.219.146", "http://dodream.store", "https://dodream.store"));
             config.setAllowCredentials(true);
             return config;
         };

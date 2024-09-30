@@ -19,7 +19,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public void addCorsMappings(CorsRegistry registry) {
 		registry
 			.addMapping("/**")
-			.allowedOrigins( "http://3.35.219.146", "http://dodream.store")
+			.allowedOrigins( "http://3.35.219.146", "http://dodream.store", 
+						"https://dodream.store")
 			.allowedMethods("OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE");
 	}
 
