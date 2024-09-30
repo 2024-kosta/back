@@ -4,30 +4,34 @@ services:
     image: mysql:8
     container_name: mysql-container
     environment:
-      - MYSQL_ROOT_PASSWORD=1234 
-      - MYSQL_USER=codesche 
-      - MYSQL_PASSWORD=1234 
-      - MYSQL_DATABASE=rest_blog_db 
-      - TZ=Asia/Seoul 
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - TZ=${TZ}
     ports:
       - "3306:3306"
     networks:
-      - kosta-net
-  back-image:
-    build:
+      - server-net
+    volumes:
+      - mysql-data:/var/lib/mysql
+  back:
+    build: 
       context: .
     container_name: back-container
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-container:3306/rest_blog_db
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=1234
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${MYSQL_USER}
+      - SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
     networks:
-      - kosta-net
+      - server-net
     depends_on:
       - mysql
     restart: always
 networks:
-  kosta-net:
-    driver: bridge
+  server-net:
+    driver: bridge 
+volumes:
+  mysql-data:
